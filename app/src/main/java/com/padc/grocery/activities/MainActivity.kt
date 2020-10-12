@@ -52,7 +52,7 @@ class MainActivity : BaseActivity(),MainView {
         mPresenter.onUiReady(this)
 
     }
-
+// 
 //    @RequiresApi(Build.VERSION_CODES.P)
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
