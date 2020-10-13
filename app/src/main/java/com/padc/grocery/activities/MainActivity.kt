@@ -1,6 +1,7 @@
 package com.padc.grocery.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.os.Build
@@ -36,6 +37,13 @@ class MainActivity : BaseActivity(),MainView {
 
     companion object {
         const val PICK_IMAGE_REQUEST = 1111
+        const val USER_NAME_EXTRA = "user name extra"
+
+        fun newIntent(context: Context,userName : String) : Intent{
+            val intent = Intent(context,MainActivity::class.java)
+            intent.putExtra(USER_NAME_EXTRA,userName)
+            return intent
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +59,11 @@ class MainActivity : BaseActivity(),MainView {
 
         mPresenter.onUiReady(this)
 
+        val userName = (intent.getStringExtra(USER_NAME_EXTRA))
+        tvUserName.text= "Hello $userName"
+
     }
-// 
+//
 //    @RequiresApi(Build.VERSION_CODES.P)
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
@@ -146,5 +157,9 @@ class MainActivity : BaseActivity(),MainView {
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+    }
+
+    override fun showError(error: String) {
+
     }
 }
