@@ -1,5 +1,6 @@
 package com.padc.grocery.viewHolders
 
+import android.net.Uri
 import android.view.View
 import com.bumptech.glide.Glide
 import com.padc.grocery.data.vos.GroceryVO
@@ -19,7 +20,7 @@ class GroceryViewHolder(private val mDelegate : GroceryItemDelegate,itemView: Vi
         }
 
         itemView.btnEdit.setOnClickListener {
-            mDelegate.onTapEditGrocery(data.name ?: "", data.description ?: "", data.amount ?: 0)
+            mDelegate.onTapEditGrocery(data.name ?: "", data.description ?: "", data.amount ?: 0,data.image.toString())
         }
 
         itemView.btnFileUpload.setOnClickListener {

@@ -8,10 +8,25 @@ import com.padc.grocery.delegates.GroceryItemDelegate
 import com.padc.grocery.viewHolders.GroceryViewHolder
 import com.zg.burgerjoint.adapters.BaseRecyclerAdapter
 
-class GroceryAdapter(delegate : GroceryItemDelegate) : BaseRecyclerAdapter<GroceryViewHolder, GroceryVO>() {
+class GroceryAdapter(delegate : GroceryItemDelegate,private val type : Int) : BaseRecyclerAdapter<GroceryViewHolder, GroceryVO>() {
     val mDelegate  = delegate
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_grocery_item,parent,false)
-        return GroceryViewHolder(mDelegate,view)
+
+        return when(type){
+            0 -> { GroceryViewHolder(mDelegate,
+                LayoutInflater.from(parent.context).inflate(R.layout.view_holder_grocery_item,parent,false))
+            }
+
+            1 ->{
+                GroceryViewHolder(mDelegate,
+                    LayoutInflater.from(parent.context).inflate(R.layout.view_holder_grocery_grid_item,parent,false))
+            }
+            else ->{
+                GroceryViewHolder(mDelegate,
+                    LayoutInflater.from(parent.context).inflate(R.layout.view_holder_grocery_item,parent,false))
+
+            }
+
+        }
     }
 }

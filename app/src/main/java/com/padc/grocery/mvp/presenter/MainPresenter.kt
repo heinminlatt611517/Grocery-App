@@ -10,5 +10,6 @@ interface MainPresenter : BasePresenter<MainView>,GroceryItemDelegate{
         name: String, description: String, amount: Int,
         image: Bitmap
     )
+
     //fun onPhotoTaken(bitmap: Bitmap)
 }

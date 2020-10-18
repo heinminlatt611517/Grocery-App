@@ -2,23 +2,30 @@ package com.padc.grocery.dialogs
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.net.toUri
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.padc.grocery.R
 import com.padc.grocery.activities.MainActivity
 import com.padc.grocery.mvp.presenter.MainPresenter
 import com.padc.grocery.mvp.presenter.MainPresenterImpl
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dialog_add_grocery.*
 import kotlinx.android.synthetic.main.dialog_add_grocery.view.*
+import java.io.File
 import java.io.IOException
 
 
@@ -56,21 +63,25 @@ class GroceryDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpPresenter()
 
-//        view.btnAddGrocery.setOnClickListener {
-//            mPresenter.onTapAddGrocery(
-//                etGroceryName.text.toString(),
-//                etDescription.text.toString(),
-//                etAmount.text.toString().toInt()
-//            )
-//            dismiss()
-//        }
+
 
 
         view.etGroceryName?.setText(arguments?.getString(BUNDLE_NAME))
         view.etDescription?.setText(arguments?.getString(BUNDLE_DESCRIPTION))
         view.etAmount?.setText(arguments?.getString(BUNDLE_AMOUNT))
 
-        view.btnAddGrocery.setOnClickListener {
+        Log.d("imageLink",arguments?.getString(BITMAP_IMAGE).toString())
+        if (!arguments?.getString(BITMAP_IMAGE).toString().isNullOrEmpty()){
+
+        }
+        else{
+           Picasso.with(context)
+               .load("https://"+arguments?.getString(BITMAP_IMAGE).toString())
+               .into(ivGroceryImage)
+        }
+
+
+            view.btnAddGrocery.setOnClickListener {
             mPresenter.onTapAddGrocery(
                 etGroceryName.text.toString(),
                 etDescription.text.toString(),

@@ -30,6 +30,7 @@ class LoginActivty : BaseActivity(),LoginView {
         setUpPresenter()
         setUpActionListeners()
 
+        mPresenter.onUiReady(this)
     }
 
     private fun setUpActionListeners() {

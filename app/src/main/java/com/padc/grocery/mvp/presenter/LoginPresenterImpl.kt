@@ -3,11 +3,15 @@ package com.padc.grocery.mvp.presenter
 import androidx.lifecycle.LifecycleOwner
 import com.padc.grocery.data.models.AuthenticationModel
 import com.padc.grocery.data.models.AuthenticationModelImpl
+import com.padc.grocery.data.models.GroceryModel
+import com.padc.grocery.data.models.GroceryModelImpl
 import com.padc.grocery.mvp.views.LoginView
 
 class LoginPresenterImpl : LoginPresenter,AbstractBasePresenter<LoginView>() {
 
     private val mAuthenticatioModel: AuthenticationModel = AuthenticationModelImpl
+
+    private val mGroceryModel : GroceryModel = GroceryModelImpl
 
     override fun onTapLogin(email: String, password: String) {
      mAuthenticatioModel.login(email,password,onSuccess = {
@@ -27,6 +31,7 @@ class LoginPresenterImpl : LoginPresenter,AbstractBasePresenter<LoginView>() {
     }
 
     override fun onUiReady(owner: LifecycleOwner) {
-
+        mGroceryModel.setUpRemoteConfigWithDefaultValue()
+        mGroceryModel.fetchRemoteConfigs()
     }
 }
