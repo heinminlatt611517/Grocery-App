@@ -30,12 +30,12 @@ class LoginActivty : BaseActivity(),LoginView {
         setUpPresenter()
         setUpActionListeners()
 
-        mPresenter.onUiReady(this)
+        mPresenter.onUiReady(this,this)
     }
 
     private fun setUpActionListeners() {
         btnLogin.setOnClickListener {
-            mPresenter.onTapLogin(etEmail.text.toString(), etPassword.text.toString())
+            mPresenter.onTapLogin(this,etEmail.text.toString(), etPassword.text.toString())
         }
 
         btnRegister.setOnClickListener {

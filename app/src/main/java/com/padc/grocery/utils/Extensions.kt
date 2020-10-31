@@ -23,6 +23,7 @@ fun extUploadImageAndEditGrocery(image: Bitmap,onUploadImageSuccess : (task: Tas
         //
     }.addOnSuccessListener { taskSnapshot ->
         //
+
     }
 
     val urlTask = uploadTask.continueWithTask {

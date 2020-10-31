@@ -75,7 +75,7 @@ class GroceryDialogFragment : DialogFragment() {
 
         }
         else{
-           Picasso.with(context)
+           Glide.with(this)
                .load("https://"+arguments?.getString(BITMAP_IMAGE).toString())
                .into(ivGroceryImage)
         }
